@@ -1,0 +1,33 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 04/01/2019 13:45
+  	*/
+
+
+      @font-face {
+        font-family: "Flaticon";
+        src: url("../fonts/Flaticon.woff");
+        src: url("../fonts/Flaticon.woff") format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+          
+      [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+      [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+        font-family: Flaticon;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+      
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      .flaticon-vector:before { content: "\f100"; }
+      .flaticon-web-programming:before { content: "\f101"; }
+      .flaticon-layer:before { content: "\f102"; }
+      .flaticon-coding:before { content: "\f103"; }
+      .flaticon-zoom:before { content: "\f104"; }
