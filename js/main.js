@@ -1,8 +1,5 @@
 (function($) {
-
 	"use strict";
-
-
 	$(window).stellar({
     responsive: true,
     parallaxBackgrounds: true,
@@ -12,28 +9,23 @@
     scrollProperty: 'scroll'
   });
 
-
 	var fullHeight = function() {
-
 		$('.js-fullheight').css('height', $(window).height());
 		$(window).resize(function(){
 			$('.js-fullheight').css('height', $(window).height());
 		});
-
 	};
 	fullHeight();
 
-	// loader
 	var loader = function() {
 		setTimeout(function() { 
-			if($('#ftco-loader').length > 0) {
-				$('#ftco-loader').removeClass('show');
+			if($('#loader').length > 0) {
+				$('#loader').removeClass('show');
 			}
 		}, 1);
 	};
 	loader();
 
-	// Scrollax
    $.Scrollax();
 
 	var carousel = function() {
@@ -85,36 +77,26 @@
 
 	$('nav .dropdown').hover(function(){
 		var $this = $(this);
-		// 	 timer;
-		// clearTimeout(timer);
 		$this.addClass('show');
 		$this.find('> a').attr('aria-expanded', true);
-		// $this.find('.dropdown-menu').addClass('animated-fast fadeInUp show');
 		$this.find('.dropdown-menu').addClass('show');
 	}, function(){
 		var $this = $(this);
-			// timer;
-		// timer = setTimeout(function(){
 			$this.removeClass('show');
 			$this.find('> a').attr('aria-expanded', false);
-			// $this.find('.dropdown-menu').removeClass('animated-fast fadeInUp show');
 			$this.find('.dropdown-menu').removeClass('show');
-		// }, 100);
 	});
-
 
 	$('#dropdown04').on('show.bs.dropdown', function () {
 	  console.log('show');
 	});
 
-	// scroll
 	var scrollWindow = function() {
 		$(window).scroll(function(){
 			var $w = $(this),
 					st = $w.scrollTop(),
-					navbar = $('.ftco_navbar'),
+					navbar = $('.main_navbar'),
 					sd = $('.js-scroll-wrap');
-
 			if (st > 150) {
 				if ( !navbar.hasClass('scrolled') ) {
 					navbar.addClass('scrolled');	
@@ -129,7 +111,6 @@
 				if ( !navbar.hasClass('awake') ) {
 					navbar.addClass('awake');	
 				}
-				
 				if(sd.length > 0) {
 					sd.addClass('sleep');
 				}
@@ -147,13 +128,9 @@
 	};
 	scrollWindow();
 
-
 	var counter = function() {
-		
-		$('#section-counter, .hero-wrap, .ftco-counter').waypoint( function( direction ) {
-
+		$('#section-counter, .hero-section, .ftco-counter').waypoint( function( direction ) {
 			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
-
 				var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
 				$('.number').each(function(){
 					var $this = $(this),
@@ -166,26 +143,18 @@
 					  }, 7000
 					);
 				});
-				
 			}
-
 		} , { offset: '95%' } );
-
 	}
 	counter();
-
 
 	var contentWayPoint = function() {
 		var i = 0;
 		$('.ftco-animate').waypoint( function( direction ) {
-
 			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
-				
 				i++;
-
 				$(this.element).addClass('item-animate');
 				setTimeout(function(){
-
 					$('body .ftco-animate.item-animate').each(function(k){
 						var el = $(this);
 						setTimeout( function () {
@@ -202,34 +171,29 @@
 							el.removeClass('item-animate');
 						},  k * 50, 'easeInOutExpo' );
 					});
-					
 				}, 100);
-				
 			}
-
 		} , { offset: '95%' } );
 	};
 	contentWayPoint();
 
-
-	// magnific popup
 	$('.image-popup').magnificPopup({
     type: 'image',
     closeOnContentClick: true,
     closeBtnInside: false,
     fixedContentPos: true,
-    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+    mainClass: 'mfp-no-margins mfp-with-zoom',
      gallery: {
       enabled: true,
       navigateByImgClick: true,
-      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+      preload: [0,1]
     },
     image: {
       verticalFit: true
     },
     zoom: {
       enabled: true,
-      duration: 300 // don't foget to change the duration also in CSS
+      duration: 300
     }
   });
 
@@ -239,10 +203,39 @@
     mainClass: 'mfp-fade',
     removalDelay: 160,
     preloader: false,
-
     fixedContentPos: false
   });
 
-
 })(jQuery);
 
+(function(d){var r=function(b){return b.split("").reverse().join("")},
+m={numberStep:function(b,a){var e=Math.floor(b);
+	d(a.elem).text(e)}},g=function(b){var a=b.elem;
+		a.nodeType&&a.parentNode&&(a=a._animateNumberSetter,a||(a=m.numberStep),
+		a(b.now,b))};
+		d.Tween&&d.Tween.propHooks?d.Tween.propHooks.number={set:g}:d.fx.step.number=g;
+		d.animateNumber={numberStepFactories:{append:function(b){return function(a,e){var f=Math.floor(a);
+			d(e.elem).prop("number",a).text(f+b)}},
+			separator:function(b,a,e){b=b||" ";
+	a=a||3;
+	e=e||"";
+	return function(f,k){var u=0>f,
+		c=Math.floor((u?-1:1)*f).toString(),
+		n=d(k.elem);
+		if(c.length>a){for(var h=c,l=a,m=h.split("").reverse(),
+			c=[],p,s,q,t=0,
+			g=Math.ceil(h.length/l);
+			t<g;
+			t++){p="";
+				for(q=0;q<l;q++){s=t*l+q;
+					if(s===h.length)break;p+=m[s]}c.push(p)}h=c.length-1;
+					l=r(c[h]);c[h]=r(parseInt(l,10).toString());
+					c=c.join(b);c=r(c)}n.prop("number",f).text((u?"-":"")+c+e)}}}};
+					d.fn.animateNumber=function(){for(var b=arguments[0],
+						a=d.extend({},m,b),e=d(this),
+						f=[a],k=1,g=arguments.length;
+						k<g;k++)f.push(arguments[k]);
+	if(b.numberStep){var c=this.each(function(){this._animateNumberSetter=b.numberStep}),
+	n=a.complete;a.complete=function(){c.each(function(){delete this._animateNumberSetter});
+	n&&n.apply(this,arguments)}}return e.animate.apply(e,f)}})(jQuery);
+	
